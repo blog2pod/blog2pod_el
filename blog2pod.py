@@ -27,8 +27,6 @@ load_dotenv()
 # Initialize log
 logging.basicConfig(filename='debug.log', level=logging.INFO)
 
-azure_endpoint = os.getenv("AZURE_ENDPOINT")
-tts_deployment = os.getenv("TTS_DEPLOYMENT")
 tts_voice = os.getenv("TTS_VOICE")
 
 ttsclient = ElevenLabs(
@@ -198,7 +196,7 @@ def get_audio_thread(cleaned_content, cleaned_title, url, header_img_url=None):
         try:
             # Get the generator object from the API
             response_generator = ttsclient.text_to_speech.convert(
-                voice_id="EXAVITQu4vr4xnSDxMaL",
+                voice_id=tts_voice,
                 text=chunk
             )
 
